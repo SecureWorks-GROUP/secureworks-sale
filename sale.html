@@ -47,24 +47,45 @@
        CSS VARIABLES
        ══════════════════════════════════════════════════ */
     :root {
+      /* Anchors — canon: secureworks-docs/brand/design-system.md */
       --sw-orange: #F15A29;
+      --sw-orange-900: #C4481F;
+      --sw-orange-100: #FDF2EE;
       --sw-dark: #293C46;
+      --sw-blue-950: #1A272E;
       --sw-mid: #4C6A7C;
-      --sw-light: #F0F4F7;
-      --sw-bg: #F7F8FA;
-      --sw-border: #EAEDF0;
-      --sw-text: #1A2332;
-      --sw-text-sec: #7C8898;
+      --sw-blue-400: #8FA4B2;
+      --sw-blue-200: #D4DEE4;
+      --sw-light: #F0F4F7;        /* legacy alias — prefer --sw-warm-100 / --sw-warm-50 */
+
+      /* Warm ground (was cool grey, now canonical sandstone) */
+      --sw-bg: #F8F6F3;            /* warm-100 — page background */
+      --sw-card: #FCFBFA;          /* warm-50 — card surface, replaces #FFFFFF */
+      --sw-warm-300: #E8E4DF;
+      --sw-border: #D4DEE4;        /* blue-200 — was cool grey #EAEDF0 */
+
+      /* Text */
+      --sw-text: #1A2332;          /* product token — slightly darker than canon body for table density */
+      --sw-text-sec: #4C6A7C;      /* mid-blue — was generic grey #7C8898 */
+
+      /* Utility / RAG semantics — NOT accent colours, never replace orange */
       --sw-green: #27AE60;
       --sw-red: #E74C3C;
       --sw-yellow: #E67E22;
       --sw-blue: #3498DB;
-      --sw-card: #FFFFFF;
-      --sw-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-      --sw-shadow-hover: 0 10px 40px rgba(0,0,0,0.08);
-      --sw-radius: 12px;
-      --sw-font: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --sw-font-num: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+      /* Shadows — blue-toned per canon §2.4. Most elements flat. */
+      --sw-shadow: 0 1px 3px rgba(41,60,70,0.06);
+      --sw-shadow-hover: 0 4px 12px rgba(41,60,70,0.10);
+
+      /* Edges — sharp by default. Eased only on inputs/buttons. Pill only on chips. */
+      --sw-radius: 0px;
+      --sw-radius-sm: 3px;
+      --sw-radius-pill: 100px;
+
+      /* Typography — Helvetica Neue is the brand. No Inter, no SF Pro Display. */
+      --sw-font: 'Helvetica Neue', Helvetica, Arial, -apple-system, BlinkMacSystemFont, sans-serif;
+      --sw-font-num: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
     /* ══════════════════════════════════════════════════
@@ -104,7 +125,7 @@
       padding: 6px 14px;
       background: rgba(255,255,255,0.1);
       border: none;
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       color: rgba(255,255,255,0.7);
       font-size: 13px;
       cursor: pointer;
@@ -120,7 +141,7 @@
       background: rgba(255,255,255,0.1);
       color: rgba(255,255,255,0.8);
       border: none;
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
@@ -154,7 +175,7 @@
       min-height: 48px;
       background: rgba(255,255,255,0.08);
       border: none;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       color: rgba(255,255,255,0.5);
       font-size: 10px;
       font-weight: 600;
@@ -206,7 +227,7 @@
       width: 100%;
       padding: 12px 14px;
       border: 1px solid var(--sw-border);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 16px;
       margin-bottom: 12px;
       outline: none;
@@ -224,7 +245,7 @@
       gap: 6px;
       padding: 12px 20px;
       border: none;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
@@ -279,7 +300,7 @@
     .stat-card.border-red { border-left-color: var(--sw-red); }
     .stat-icon {
       width: 32px; height: 32px;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
@@ -328,7 +349,7 @@
       background: var(--sw-light);
       color: var(--sw-text-sec);
       padding: 2px 8px;
-      border-radius: 10px;
+      border-radius: var(--sw-radius);
       font-weight: 600;
     }
 
@@ -358,7 +379,7 @@
       font-size: 11px;
       font-weight: 700;
       padding: 2px 8px;
-      border-radius: 10px;
+      border-radius: var(--sw-radius);
       color: #fff;
       min-width: 22px;
       text-align: center;
@@ -398,7 +419,7 @@
       font-size: 11px;
       font-weight: 600;
       padding: 2px 8px;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       white-space: nowrap;
     }
     .days-green { background: rgba(39,174,96,0.1); color: var(--sw-green); }
@@ -482,7 +503,7 @@
     .admin-filter select {
       padding: 8px 12px;
       border: 1px solid var(--sw-border);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 14px;
       font-family: var(--sw-font);
       background: var(--sw-card);
@@ -513,7 +534,7 @@
     .filter-chip {
       padding: 6px 14px;
       border: 1px solid var(--sw-border);
-      border-radius: 20px;
+      border-radius: var(--sw-radius);
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
@@ -564,7 +585,7 @@
       font-size: 11px;
       background: rgba(255,255,255,0.25);
       padding: 1px 7px;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
     }
     .kanban-header.blue { background: var(--sw-blue); }
     .kanban-header.orange { background: var(--sw-orange); }
@@ -578,7 +599,7 @@
     }
     .kanban-card {
       background: var(--sw-card);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       padding: 12px;
       margin-bottom: 8px;
       box-shadow: var(--sw-shadow);
@@ -605,7 +626,7 @@
       text-transform: uppercase;
       letter-spacing: 0.3px;
       padding: 2px 7px;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
     }
     .type-pill.patio { background: rgba(52,152,219,0.1); color: var(--sw-blue); }
     .type-pill.fencing { background: rgba(241,90,41,0.1); color: var(--sw-orange); }
@@ -626,7 +647,7 @@
       color: var(--sw-text-sec);
       cursor: pointer;
     }
-    .kanban-collapsed:hover { background: rgba(0,0,0,0.02); }
+    .kanban-collapsed:hover { background: rgba(41,60,70,0.04); }
 
     /* ══════════════════════════════════════════════════
        DETAIL SLIDE PANEL
@@ -635,7 +656,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: rgba(26,39,46,0.65);
       z-index: 199;
     }
     /* Detail panel must be non-obscuring: drop the dark dimming backdrop
@@ -657,7 +678,7 @@
       max-width: 100vw;
       background: var(--sw-card);
       z-index: 200;
-      box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+      box-shadow: -10px 0 40px rgba(41,60,70,0.10);
       transform: translateX(100%);
       transition: transform 0.3s ease;
       overflow-y: auto;
@@ -704,7 +725,7 @@
       margin-top: 16px;
       padding: 12px;
       background: var(--sw-light);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 13px;
       color: var(--sw-text-sec);
       white-space: pre-wrap;
@@ -714,7 +735,7 @@
       width: 100%;
       padding: 10px 12px;
       border: 1px solid var(--sw-border);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 14px;
       font-family: var(--sw-font);
       resize: vertical;
@@ -731,7 +752,7 @@
     .chat-header h4 { font-size: 14px; font-weight: 700; color: var(--sw-text); margin: 0; }
     .chat-header-actions { display: flex; gap: 8px; }
     .chat-header-actions button, .chat-header-actions a {
-      font-size: 12px; padding: 4px 10px; border-radius: 6px;
+      font-size: 12px; padding: 4px 10px; border-radius: var(--sw-radius-sm);
       border: 1px solid var(--sw-border); background: var(--sw-light);
       color: var(--sw-text); cursor: pointer; text-decoration: none;
       font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
@@ -741,18 +762,18 @@
     .chat-thread {
       max-height: 400px; overflow-y: auto; padding: 8px 4px;
       display: flex; flex-direction: column; gap: 8px;
-      background: var(--sw-bg); border-radius: 8px;
+      background: var(--sw-bg); border-radius: var(--sw-radius-sm);
     }
     .chat-load-more {
       text-align: center; padding: 6px;
     }
     .chat-load-more button {
-      font-size: 11px; padding: 4px 12px; border-radius: 6px;
+      font-size: 11px; padding: 4px 12px; border-radius: var(--sw-radius-sm);
       border: 1px solid var(--sw-border); background: var(--sw-card);
       color: var(--sw-text-sec); cursor: pointer;
     }
     .chat-msg {
-      max-width: 80%; padding: 8px 12px; border-radius: 12px;
+      max-width: 80%; padding: 8px 12px; border-radius: var(--sw-radius);
       font-size: 13px; line-height: 1.4; word-break: break-word;
     }
     .chat-msg.inbound {
@@ -776,19 +797,19 @@
     .chat-template-row { margin-bottom: 6px; }
     .chat-template-row select {
       width: 100%; padding: 6px 10px; border: 1px solid var(--sw-border);
-      border-radius: 6px; font-size: 12px; background: var(--sw-card);
+      border-radius: var(--sw-radius-sm); font-size: 12px; background: var(--sw-card);
       font-family: var(--sw-font);
     }
     .chat-input-row { display: flex; gap: 6px; align-items: flex-end; }
     .chat-input-row textarea {
       flex: 1; padding: 8px 10px; border: 1px solid var(--sw-border);
-      border-radius: 8px; font-size: 14px; font-family: var(--sw-font);
+      border-radius: var(--sw-radius-sm); font-size: 14px; font-family: var(--sw-font);
       resize: none; min-height: 40px; max-height: 80px;
     }
     .chat-input-row textarea:focus { border-color: var(--sw-orange); outline: none; }
     .chat-send-btn {
       padding: 8px 14px; background: var(--sw-orange); color: #fff;
-      border: none; border-radius: 8px; font-size: 13px; font-weight: 600;
+      border: none; border-radius: var(--sw-radius-sm); font-size: 13px; font-weight: 600;
       cursor: pointer; white-space: nowrap; min-height: 40px;
     }
     .chat-send-btn:disabled { opacity: 0.5; cursor: default; }
@@ -805,13 +826,13 @@
 
     /* ── Call Log Prompt ── */
     .call-log-prompt {
-      padding: 12px; background: var(--sw-light); border-radius: 8px;
+      padding: 12px; background: var(--sw-light); border-radius: var(--sw-radius-sm);
       margin-top: 8px;
     }
     .call-log-prompt p { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
     .call-log-prompt textarea {
       width: 100%; padding: 8px 10px; border: 1px solid var(--sw-border);
-      border-radius: 6px; font-size: 13px; font-family: var(--sw-font);
+      border-radius: var(--sw-radius-sm); font-size: 13px; font-family: var(--sw-font);
       resize: vertical; min-height: 50px; margin-bottom: 6px;
     }
     .call-log-prompt .btn-row { display: flex; gap: 6px; }
@@ -819,14 +840,14 @@
     /* ── Email Modal ── */
     .email-modal-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5); z-index: 300;
+      background: rgba(26,39,46,0.65); z-index: 300;
       justify-content: center; align-items: center;
     }
     .email-modal-overlay.show { display: flex; }
     .email-modal {
       background: var(--sw-card); border-radius: var(--sw-radius);
       width: 90%; max-width: 480px; max-height: 90vh; overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 60px rgba(41,60,70,0.14);
     }
     .email-modal-header {
       padding: 16px; border-bottom: 1px solid var(--sw-border);
@@ -837,7 +858,7 @@
     .email-modal-body label { font-size: 12px; font-weight: 600; color: var(--sw-text-sec); display: block; margin-bottom: 4px; }
     .email-modal-body input, .email-modal-body textarea {
       width: 100%; padding: 10px 12px; border: 1px solid var(--sw-border);
-      border-radius: 8px; font-size: 14px; font-family: var(--sw-font);
+      border-radius: var(--sw-radius-sm); font-size: 14px; font-family: var(--sw-font);
       margin-bottom: 12px;
     }
     .email-modal-body textarea { min-height: 120px; resize: vertical; }
@@ -859,7 +880,7 @@
     .period-btn {
       padding: 6px 14px;
       border: 1px solid var(--sw-border);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
@@ -880,7 +901,7 @@
     .custom-dates input[type="date"] {
       padding: 6px 10px;
       border: 1px solid var(--sw-border);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 13px;
       font-family: var(--sw-font);
     }
@@ -950,8 +971,8 @@
       margin-bottom: 8px;
     }
     .funnel-label { font-size: 12px; font-weight: 600; width: 70px; text-align: right; color: var(--sw-text); }
-    .funnel-track { flex: 1; height: 28px; background: var(--sw-light); border-radius: 6px; position: relative; overflow: hidden; }
-    .funnel-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 700; color: #fff; transition: width 0.5s ease; }
+    .funnel-track { flex: 1; height: 28px; background: var(--sw-light); border-radius: var(--sw-radius-sm); position: relative; overflow: hidden; }
+    .funnel-fill { height: 100%; border-radius: var(--sw-radius-sm); display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 700; color: #fff; transition: width 0.5s ease; }
     .funnel-drop { font-size: 11px; color: var(--sw-text-sec); width: 50px; text-align: left; }
 
     /* Top suburbs table */
@@ -1018,7 +1039,7 @@
     .filter-bar select {
       padding: 8px 12px;
       border: 1px solid var(--sw-border);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 13px;
       font-family: var(--sw-font);
       background: var(--sw-card);
@@ -1079,7 +1100,7 @@
       text-transform: uppercase;
       letter-spacing: 0.3px;
       padding: 3px 8px;
-      border-radius: 10px;
+      border-radius: var(--sw-radius);
       display: inline-block;
       white-space: nowrap;
     }
@@ -1092,7 +1113,7 @@
       font-size: 10px;
       font-weight: 600;
       padding: 2px 7px;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       display: inline-block;
       white-space: nowrap;
     }
@@ -1108,7 +1129,7 @@
       background: rgba(231,76,60,0.1);
       color: var(--sw-red);
       padding: 1px 6px;
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       font-weight: 600;
       margin-left: 4px;
     }
@@ -1126,7 +1147,7 @@
     .pagination-btns button {
       padding: 6px 14px;
       border: 1px solid var(--sw-border);
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 13px;
       cursor: pointer;
       background: var(--sw-card);
@@ -1147,7 +1168,7 @@
       background: var(--sw-dark);
       color: #fff;
       padding: 10px 20px;
-      border-radius: 8px;
+      border-radius: var(--sw-radius-sm);
       font-size: 14px;
       font-weight: 500;
       z-index: 300;
@@ -1202,7 +1223,7 @@
     }
     .quick-btn {
       width: 32px; height: 32px;
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       border: 1px solid var(--sw-border);
       background: var(--sw-card);
       cursor: pointer;
@@ -1227,7 +1248,7 @@
     }
     .category-chip {
       padding: 5px 12px;
-      border-radius: 100px;
+      border-radius: var(--sw-radius-pill);
       border: 1px solid var(--sw-border);
       background: var(--sw-card);
       font-size: 12px;
@@ -1248,7 +1269,7 @@
       padding: 2px 6px;
       font-size: 11px;
       border: 1px solid var(--sw-border);
-      border-radius: 4px;
+      border-radius: var(--sw-radius-sm);
       background: var(--sw-card);
       color: var(--sw-text-sec);
       cursor: pointer;
@@ -1271,7 +1292,7 @@
     .scope-week-nav button {
       padding: 6px 12px;
       border: 1px solid var(--sw-border);
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       background: var(--sw-card);
       cursor: pointer;
       font-size: 13px;
@@ -1284,12 +1305,12 @@
       background: var(--sw-orange);
       color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
     }
-    .btn-book-scope:hover { background: #C4481F; }
+    .btn-book-scope:hover { background: var(--sw-orange-900); }
 
     .scope-grid {
       display: grid;
@@ -1335,13 +1356,13 @@
     }
     .scope-cell:hover { background: var(--sw-light); }
     .scope-cell.unavailable {
-      background: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0,0,0,0.03) 5px, rgba(0,0,0,0.03) 10px);
+      background: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(41,60,70,0.04) 5px, rgba(41,60,70,0.04) 10px);
       cursor: default;
     }
     .scope-card {
       background: var(--sw-light);
       border-left: 3px solid var(--sw-blue);
-      border-radius: 4px;
+      border-radius: var(--sw-radius-sm);
       padding: 6px 8px;
       font-size: 12px;
       cursor: pointer;
@@ -1358,7 +1379,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.3);
+      background: rgba(26,39,46,0.65);
       z-index: 200;
     }
     .book-scope-overlay.show { display: block; }
@@ -1369,7 +1390,7 @@
       width: 400px;
       height: 100vh;
       background: var(--sw-card);
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      box-shadow: -4px 0 20px rgba(41,60,70,0.10);
       z-index: 201;
       transition: right 0.2s;
       display: flex;
@@ -1383,14 +1404,14 @@
       width: 100%;
       padding: 8px 12px;
       border: 1px solid var(--sw-border);
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       font-size: 14px;
     }
     .time-slot-grid { display: flex; flex-wrap: wrap; gap: 6px; }
     .time-slot-btn {
       padding: 8px 14px;
       border: 1px solid var(--sw-border);
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       background: var(--sw-card);
       cursor: pointer;
       font-size: 13px;
@@ -1403,18 +1424,18 @@
     .suburb-hint {
       margin-top: 8px;
       padding: 10px 12px;
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       font-size: 12px;
       line-height: 1.4;
     }
-    .suburb-hint.good { background: #E8F5E9; color: #2E7D32; }
-    .suburb-hint.neutral { background: #FFF3E0; color: #E65100; }
-    .suburb-hint.bad { background: #FFEBEE; color: #C62828; }
+    .suburb-hint.good    { background: rgba(39,174,96,0.12);  color: var(--sw-green); }
+    .suburb-hint.neutral { background: rgba(230,126,34,0.12); color: var(--sw-yellow); }
+    .suburb-hint.bad     { background: rgba(231,76,60,0.12);  color: var(--sw-red); }
     .book-job-results {
       max-height: 200px;
       overflow-y: auto;
       border: 1px solid var(--sw-border);
-      border-radius: 6px;
+      border-radius: var(--sw-radius-sm);
       display: none;
     }
     .book-job-results.show { display: block; }
@@ -1451,7 +1472,7 @@
     .alert-detail { font-size: 13px; color: var(--sw-text-sec); margin-bottom: 10px; }
     .alert-actions { display: flex; gap: 8px; align-items: center; }
     .alert-btn {
-      padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      padding: 6px 14px; border-radius: var(--sw-radius-sm); font-size: 13px; font-weight: 600;
       border: none; cursor: pointer; font-family: var(--sw-font);
     }
     .alert-btn.primary { background: var(--sw-orange); color: #fff; }
@@ -1464,7 +1485,7 @@
       display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
     }
     .slide-status-actions button {
-      padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      padding: 8px 14px; border-radius: var(--sw-radius-sm); font-size: 13px; font-weight: 600;
       border: none; cursor: pointer; font-family: var(--sw-font); flex: 1;
     }
     .slide-status-actions .btn-quoted { background: rgba(241,90,41,0.1); color: var(--sw-orange); }
@@ -1519,6 +1540,7 @@
       --warm-100: #F8F6F3;
       --warm-200: #F0ECE8;
       --orange-700: #F15A29;
+      --orange-900: #C4481F;
       --orange-100: #FDF2EE;
     }
     body.v2-mode { background: var(--warm-100); }
@@ -1641,7 +1663,7 @@
     }
     .ck-btn:hover { border-color: var(--blue-600); }
     .ck-btn-primary { background: var(--orange-700); color: #fff; border-color: var(--orange-700); }
-    .ck-btn-primary:hover { background: #C4481F; border-color: #C4481F; }
+    .ck-btn-primary:hover { background: var(--orange-900); border-color: var(--orange-900); }
     .ck-btn-ghost { color: var(--blue-600); border-color: transparent; padding-left:0; padding-right:0; }
     .ck-btn-ghost:hover { color: var(--blue-800); }
 
@@ -1685,12 +1707,12 @@
 
     /* Mark Lost modal */
     .ck-modal-backdrop {
-      position: fixed; inset: 0; background: rgba(26,39,46,0.65); backdrop-filter: blur(3px);
+      position: fixed; inset: 0; background: rgba(26,39,46,0.65);
       display:none; align-items:center; justify-content:center; z-index: 9999;
     }
     .ck-modal-backdrop.open { display:flex; }
     .ck-modal {
-      background: #fff; padding: 36px 40px; max-width: 520px; width: 92%;
+      background: var(--warm-50); padding: 36px 40px; max-width: 520px; width: 92%;
       border-top: 3px solid var(--orange-700);
     }
     .ck-modal h3 { margin:0 0 4px; font-size: 22px; color: var(--blue-950); letter-spacing:-0.01em; }
@@ -1702,6 +1724,277 @@
     }
     .ck-modal textarea { min-height: 80px; resize: vertical; }
     .ck-modal .ck-modal-actions { display:flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+
+    /* ══════════════════════════════════════════════════
+       APPROVAL COCKPIT v3 — Mobile preview shell
+       Activated when ?v3=1. Scoped with .ap- prefix.
+       Mobile-first; reuses v2 colour tokens.
+       PREVIEW ONLY — mock data, every action is inert.
+       ══════════════════════════════════════════════════ */
+    body.v3-mode { background: var(--warm-100); }
+    body.v3-mode .header-nav button:not([data-view="approval"]),
+    body.v3-mode .bottom-nav button:not([data-view="approval"]) { display:none; }
+    body:not(.v3-mode) [data-view="approval"] { display:none; }
+
+    #viewApproval { display:none; }
+    #viewApproval.active { display:block; }
+
+    .ap-shell {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 16px 96px;
+      color: var(--blue-800);
+    }
+    .ap-shell *, .ap-shell *::before, .ap-shell *::after { box-sizing: border-box; }
+
+    .ap-header {
+      position: sticky; top: 0; z-index: 5;
+      background: var(--warm-100);
+      border-bottom: 1px solid var(--blue-200);
+      padding: 14px 0 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .ap-header-left { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .ap-header-rep {
+      font-size: 20px; font-weight: 700; color: var(--blue-950);
+      letter-spacing: -0.01em; line-height: 1.2;
+    }
+    .ap-header-sub {
+      font-size: 12px; color: var(--blue-600); line-height: 1.3;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .ap-preview-pill {
+      background: var(--orange-100); color: var(--orange-700);
+      padding: 6px 12px; border-radius: var(--sw-radius-pill);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ap-section { margin-bottom: 32px; }
+    .ap-section-eyebrow {
+      font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+      font-weight: 700; color: var(--blue-400); margin-bottom: 6px;
+    }
+    .ap-section-title {
+      font-size: 18px; font-weight: 700; color: var(--blue-950);
+      margin: 0 0 8px; letter-spacing: -0.01em; line-height: 1.25;
+    }
+    .ap-section-meta { font-size: 12px; color: var(--blue-600); margin: 0 0 16px; line-height: 1.45; }
+    .ap-section-meta code {
+      background: var(--blue-100); color: var(--blue-800);
+      padding: 1px 6px; border-radius: var(--sw-radius-sm); font-size: 11px;
+    }
+
+    .ap-lanes { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 768px) {
+      .ap-lanes { grid-template-columns: repeat(3, 1fr); align-items: start; }
+    }
+    .ap-lane {
+      background: var(--warm-50);
+      border: 1px solid var(--blue-200);
+      border-radius: var(--sw-radius);
+      padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .ap-lane-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--blue-100);
+    }
+    .ap-lane-name {
+      font-size: 13px; font-weight: 700; color: var(--blue-950);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .ap-lane-icon {
+      width: 28px; height: 28px; border-radius: var(--sw-radius-sm);
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--orange-100); color: var(--orange-700);
+    }
+    .ap-lane-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .ap-lane-count {
+      background: var(--blue-100); color: var(--blue-600);
+      padding: 4px 10px; border-radius: var(--sw-radius-pill);
+      font-size: 11px; font-weight: 700;
+    }
+
+    .ap-card {
+      background: #fff;
+      border: 1px solid var(--blue-200);
+      border-radius: var(--sw-radius);
+      padding: 14px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .ap-card-meta { font-size: 12px; color: var(--blue-600); line-height: 1.4; }
+    .ap-card-meta strong { color: var(--blue-950); font-weight: 700; }
+    .ap-card-action {
+      font-size: 14px; font-weight: 600; color: var(--blue-950);
+      line-height: 1.4; letter-spacing: -0.005em;
+    }
+    .ap-card-why {
+      font-size: 12px; color: var(--blue-600);
+      background: var(--warm-100); padding: 8px 10px; border-radius: var(--sw-radius-sm);
+      line-height: 1.45;
+    }
+    .ap-card-why strong { color: var(--blue-950); }
+    .ap-card-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .ap-btn {
+      flex: 1 1 0; min-height: 44px; min-width: 96px;
+      border-radius: var(--sw-radius);
+      border: 1px solid var(--blue-200);
+      background: #fff; color: var(--blue-800);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; padding: 0 14px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      transition: background-color 120ms ease, border-color 120ms ease;
+      font-family: inherit;
+    }
+    .ap-btn:hover:not(:disabled) { background: var(--blue-100); }
+    .ap-btn:focus-visible { outline: 2px solid var(--orange-700); outline-offset: 2px; }
+    .ap-btn-primary { background: var(--blue-950); color: var(--warm-50); border-color: var(--blue-950); }
+    .ap-btn-primary:hover:not(:disabled) { background: var(--blue-800); }
+    .ap-btn-ghost { background: transparent; }
+    .ap-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .ap-pill {
+      display: inline-flex; align-items: center; gap: 4px; align-self: flex-start;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 8px; border-radius: var(--sw-radius-pill);
+    }
+    .ap-pill-mock { background: var(--blue-100); color: var(--blue-600); }
+    .ap-pill-needs { background: #FEF3C7; color: #92400E; }
+
+    .ap-stat-grid {
+      display: grid; gap: 12px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 768px) { .ap-stat-grid { grid-template-columns: repeat(5, 1fr); } }
+    .ap-stat {
+      background: var(--warm-50); border: 1px solid var(--blue-200);
+      border-radius: var(--sw-radius); padding: 14px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .ap-stat-label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 700; color: var(--blue-400);
+    }
+    .ap-stat-value {
+      font-size: 24px; font-weight: 700; color: var(--blue-950);
+      letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1;
+    }
+    .ap-stat-foot { font-size: 11px; color: var(--blue-600); line-height: 1.35; }
+
+    .ap-cal-list { display: flex; flex-direction: column; gap: 8px; }
+    .ap-cal-row {
+      display: grid; grid-template-columns: 56px 1fr auto; gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      background: var(--warm-50); border: 1px solid var(--blue-200);
+      border-radius: var(--sw-radius);
+    }
+    .ap-cal-day {
+      font-size: 11px; font-weight: 700; color: var(--blue-600);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .ap-cal-day strong {
+      display: block; font-size: 18px; color: var(--blue-950);
+      margin-top: 2px; letter-spacing: -0.01em;
+    }
+    .ap-cal-event { font-size: 13px; color: var(--blue-950); font-weight: 600; line-height: 1.35; }
+    .ap-cal-event-sub { font-size: 11px; color: var(--blue-600); margin-top: 2px; line-height: 1.4; }
+    .ap-cal-status {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 8px; border-radius: var(--sw-radius-pill);
+      white-space: nowrap;
+    }
+    .ap-cal-status.is-booked { background: var(--blue-100); color: var(--blue-800); }
+    .ap-cal-status.is-open { background: var(--orange-100); color: var(--orange-700); }
+
+    .ap-coach-focus {
+      background: linear-gradient(180deg, var(--blue-950) 0%, var(--blue-800) 100%);
+      color: var(--warm-50);
+      padding: 18px;
+      border-radius: var(--sw-radius);
+    }
+    .ap-coach-focus-eyebrow {
+      font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+      font-weight: 700; color: var(--orange-700); margin-bottom: 6px;
+    }
+    .ap-coach-focus-line { font-size: 15px; line-height: 1.4; font-weight: 600; }
+    .ap-coach-list { display: flex; flex-direction: column; gap: 8px; }
+    .ap-coach-row {
+      background: var(--warm-50); border: 1px solid var(--blue-200);
+      border-radius: var(--sw-radius); padding: 12px 14px;
+    }
+    .ap-coach-row-name { font-size: 13px; font-weight: 700; color: var(--blue-950); }
+    .ap-coach-row-why { font-size: 12px; color: var(--blue-600); margin-top: 2px; line-height: 1.4; }
+    .ap-talk-track {
+      margin-top: 14px;
+      border: 1px solid var(--blue-200);
+      border-radius: var(--sw-radius);
+      background: var(--warm-50);
+    }
+    .ap-talk-track summary {
+      list-style: none; cursor: pointer;
+      padding: 12px 14px;
+      font-size: 13px; font-weight: 700; color: var(--blue-950);
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 44px;
+    }
+    .ap-talk-track summary::-webkit-details-marker { display: none; }
+    .ap-talk-track summary::after {
+      content: '+'; font-size: 18px; font-weight: 700; color: var(--blue-600);
+      width: 20px; text-align: center;
+    }
+    .ap-talk-track[open] summary::after { content: '–'; }
+    .ap-talk-track-body { padding: 0 14px 14px; font-size: 13px; line-height: 1.55; color: var(--blue-800); }
+    .ap-talk-track-body p { margin: 0 0 8px; }
+    .ap-talk-track-body p:last-child { margin: 0; }
+    .ap-talk-track-body strong { color: var(--blue-950); font-weight: 700; }
+
+    .ap-ads-grid {
+      display: grid; gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 768px) { .ap-ads-grid { grid-template-columns: repeat(4, 1fr); } }
+    .ap-ads-cell {
+      background: var(--warm-50); border: 1px solid var(--blue-200);
+      border-radius: var(--sw-radius); padding: 12px;
+    }
+    .ap-ads-label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 700; color: var(--blue-400);
+    }
+    .ap-ads-value {
+      font-size: 18px; font-weight: 700; color: var(--blue-950);
+      margin-top: 4px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums;
+    }
+    .ap-ads-quality {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: #FEF3C7; color: #78350F;
+      border-radius: var(--sw-radius-sm);
+      font-size: 12px; line-height: 1.45;
+    }
+    .ap-ads-quality strong { font-weight: 700; }
+
+    .ap-foot-note {
+      font-size: 11px; color: var(--blue-400);
+      text-align: center; padding: 24px 16px;
+      border-top: 1px dashed var(--blue-200);
+      margin-top: 32px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ap-btn { transition: none; }
+    }
 
   </style>
 </head>
@@ -1720,6 +2013,7 @@
     <div class="header-brand">SecureWorks <span>Sale</span></div>
     <div class="header-nav">
       <button data-view="cockpit" onclick="showView('cockpit')">Cockpit</button>
+      <button data-view="approval" onclick="showView('approval')">Approval</button>
       <button data-view="action" onclick="showView('action')" class="active">Action</button>
       <button data-view="pipeline" onclick="showView('pipeline')">Pipeline</button>
       <button data-view="performance" onclick="showView('performance')">Stats</button>
@@ -1738,6 +2032,10 @@
      BOTTOM NAV (mobile)
      ══════════════════════════════════════════════════ -->
 <div class="bottom-nav" id="bottomNav">
+  <button data-view="approval" onclick="showView('approval')">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Approval
+  </button>
   <button data-view="action" onclick="showView('action')" class="active">
     <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Action
@@ -1774,7 +2072,7 @@
     <input type="email" id="loginEmail" placeholder="you@email.com" autocomplete="email">
     <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
     <button class="btn btn-primary" id="btnLogin" onclick="doLogin()">Log In</button>
-    <div id="loginError" style="display:none;padding:12px;background:#fdeaea;border-radius:8px;color:var(--sw-red);font-size:14px;font-weight:600;margin-top:12px"></div>
+    <div id="loginError" style="display:none;padding:12px;background:#fdeaea;border-radius:var(--sw-radius);color:var(--sw-red);font-size:14px;font-weight:600;margin-top:12px"></div>
   </div>
 </div>
 
@@ -1850,6 +2148,61 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     APPROVAL COCKPIT (v3) — Mobile preview shell
+     Mock data only. All actions inert.
+     Activated by ?v3=1.
+     See plan: ~/.claude/plans/you-are-the-secureworks-deep-dewdrop.md §13
+     ══════════════════════════════════════════════════ -->
+<div id="viewApproval" class="view">
+  <div class="ap-shell">
+    <header class="ap-header">
+      <div class="ap-header-left">
+        <span class="ap-header-rep" id="apHeaderRep">Approval Cockpit</span>
+        <span class="ap-header-sub" id="apHeaderSub">Mock data — Cap 0 build gate active</span>
+      </div>
+      <span class="ap-preview-pill">Preview · v3</span>
+    </header>
+
+    <section class="ap-section" aria-labelledby="apLanesTitle">
+      <div class="ap-section-eyebrow">Today</div>
+      <h2 class="ap-section-title" id="apLanesTitle">Approve next moves</h2>
+      <p class="ap-section-meta">Three lanes — every send, book, and call route stays human-approved.</p>
+      <div class="ap-lanes" id="apLanes"></div>
+    </section>
+
+    <section class="ap-section" aria-labelledby="apCalTitle">
+      <div class="ap-section-eyebrow">Calendar</div>
+      <h2 class="ap-section-title" id="apCalTitle">Next 5 days</h2>
+      <p class="ap-section-meta">Mock schedule — GHL Calendar adapter not yet built.</p>
+      <div class="ap-cal-list" id="apCalList"></div>
+    </section>
+
+    <section class="ap-section" aria-labelledby="apPerfTitle">
+      <div class="ap-section-eyebrow">Performance</div>
+      <h2 class="ap-section-title" id="apPerfTitle">Week so far</h2>
+      <p class="ap-section-meta">Numbers are illustrative. Until Cap 0 release-truth ships, treat as <strong>needs evidence</strong>.</p>
+      <div class="ap-stat-grid" id="apStatGrid"></div>
+    </section>
+
+    <section class="ap-section" aria-labelledby="apCoachTitle">
+      <div class="ap-section-eyebrow">Coaching</div>
+      <h2 class="ap-section-title" id="apCoachTitle">Today's focus</h2>
+      <div id="apCoachContainer"></div>
+    </section>
+
+    <section class="ap-section" aria-labelledby="apAdsTitle">
+      <div class="ap-section-eyebrow">Lead Source</div>
+      <h2 class="ap-section-title" id="apAdsTitle">Ad economics</h2>
+      <p class="ap-section-meta">Joins between <code>contact_matches</code>, ad spend, and accepted jobs need verification.</p>
+      <div class="ap-ads-grid" id="apAdsGrid"></div>
+      <div class="ap-ads-quality"><strong>Data quality:</strong> amber — attribution joins not yet reconciled. Treat all numbers as illustrative.</div>
+    </section>
+
+    <p class="ap-foot-note">Preview shell · all actions inert · no network calls from this view · mock data only.</p>
   </div>
 </div>
 
@@ -2243,9 +2596,16 @@
 
     var saved = localStorage.getItem('sw_sale_tab');
     if (saved === 'today') saved = 'action'; // migrate old value
-    // v2 mode: ?v2=1 puts reps into the Cockpit as default home
-    var v2Flag = new URLSearchParams(location.search).get('v2') === '1';
-    if (v2Flag) {
+    // Preview flags:
+    //   ?v2=1 → Cockpit v2 (rep work queue + commission)
+    //   ?v3=1 → Approval Cockpit v3 preview shell (mock data, inert actions)
+    var qs = new URLSearchParams(location.search);
+    var v2Flag = qs.get('v2') === '1';
+    var v3Flag = qs.get('v3') === '1';
+    if (v3Flag) {
+      document.body.classList.add('v3-mode');
+      showView('approval');
+    } else if (v2Flag) {
       document.body.classList.add('v2-mode');
       showView('cockpit');
     } else {
@@ -2287,6 +2647,7 @@
     localStorage.setItem('sw_sale_tab', view);
 
     if (view === 'cockpit') ckLoad();
+    if (view === 'approval') apLoad();
     if (view === 'action') loadAction();
     if (view === 'pipeline') loadPipeline();
     if (view === 'performance') loadPerformance();
@@ -2786,10 +3147,10 @@
       } else if (st === 'quoted') {
         body += '<button class="btn-won" onclick="changeJobStatus(\'' + jobId + '\',\'accepted\')">Mark Won</button>';
         body += '<button class="btn-lost" onclick="changeJobStatus(\'' + jobId + '\',\'cancelled\')">Mark Lost</button>';
-        body += '<button class="btn-invoice" onclick="sendDepositInvoice(\'' + jobId + '\')" style="background:#F15A29;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;margin-top:4px">Send Deposit Invoice</button>';
+        body += '<button class="btn-invoice" onclick="sendDepositInvoice(\'' + jobId + '\')" style="background:var(--sw-orange);color:#fff;border:none;padding:6px 12px;border-radius:var(--sw-radius-sm);font-size:12px;cursor:pointer;margin-top:4px">Send Deposit Invoice</button>';
       } else if (st === 'accepted') {
         body += '<button class="btn-quoted" onclick="changeJobStatus(\'' + jobId + '\',\'quoted\')">Revert to Quoted</button>';
-        body += '<button class="btn-invoice" onclick="sendDepositInvoice(\'' + jobId + '\')" style="background:#F15A29;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;margin-top:4px">Send Deposit Invoice</button>';
+        body += '<button class="btn-invoice" onclick="sendDepositInvoice(\'' + jobId + '\')" style="background:var(--sw-orange);color:#fff;border:none;padding:6px 12px;border-radius:var(--sw-radius-sm);font-size:12px;cursor:pointer;margin-top:4px">Send Deposit Invoice</button>';
       } else if (st === 'cancelled') {
         body += '<button class="btn-quoted" onclick="changeJobStatus(\'' + jobId + '\',\'quoted\')">Reopen as Quoted</button>';
       }
@@ -3445,7 +3806,7 @@
           maintainAspectRatio: false,
           plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 16, font: { size: 12 } } } },
           scales: {
-            y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+            y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 11 } }, grid: { color: 'rgba(41,60,70,0.06)' } },
             x: { ticks: { font: { size: 11 } }, grid: { display: false } }
           }
         }
@@ -4124,7 +4485,7 @@
     document.getElementById('bookJobResults').classList.remove('show');
     var sel = document.getElementById('bookSelectedJob');
     sel.style.display = 'block';
-    sel.innerHTML = '<div style="padding:8px 12px;background:var(--sw-light);border-radius:6px;font-size:13px"><strong>' + clientName + '</strong><br><span style="color:var(--sw-text-sec)">' + suburb + ' \u00B7 ' + type + '</span><button onclick="clearBookJob()" style="float:right;border:none;background:none;cursor:pointer;color:var(--sw-red)">\u2715</button></div>';
+    sel.innerHTML = '<div style="padding:8px 12px;background:var(--sw-light);border-radius:var(--sw-radius);font-size:13px"><strong>' + clientName + '</strong><br><span style="color:var(--sw-text-sec)">' + suburb + ' \u00B7 ' + type + '</span><button onclick="clearBookJob()" style="float:right;border:none;background:none;cursor:pointer;color:var(--sw-red)">\u2715</button></div>';
     refreshTimeSlots();
     validateBookForm();
   };
@@ -4462,6 +4823,259 @@
     }).then(function(r) { return r.json(); })
       .then(function() { if (window.showToast) showToast('Snoozed 3 days'); ckLoad(); })
       .catch(function(err) { alert('Snooze failed: ' + friendlyError(err)); });
+  };
+
+  // ══════════════════════════════════════════════════
+  // APPROVAL COCKPIT v3 — Mobile preview shell
+  // Activated by ?v3=1 query param.
+  // PREVIEW ONLY — mock data; every action is inert.
+  // No saleFetch / opsFetch / GHL calls from this view.
+  // See plan: ~/.claude/plans/you-are-the-secureworks-deep-dewdrop.md §13
+  // ══════════════════════════════════════════════════
+
+  var APPROVAL_PREVIEW_MOCK = {
+    rep: {
+      name: 'Approval Cockpit',
+      sub: 'Mock data · 7 proposed moves · Cap 0 build gate active'
+    },
+    lanes: [
+      {
+        key: 'book',
+        title: 'Book',
+        iconPath: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+        cards: [
+          {
+            client: 'Belinda C.',
+            suburb: 'Floreat',
+            jobType: 'Patio · scope visit',
+            action: 'Offer Tue 9am or Thu 2pm at 3 Smith St for the scope visit.',
+            why: 'Quote requested 4 days ago · 2 inbound SMS replies · partner needs to be present.'
+          },
+          {
+            client: 'Roger M.',
+            suburb: 'Bicton',
+            jobType: 'Fencing · re-quote',
+            action: 'Send GHL calendar link for next Mon-Wed mornings.',
+            why: 'Original scope changed; neighbour boundary now in scope.'
+          }
+        ]
+      },
+      {
+        key: 'send',
+        title: 'Send',
+        iconPath: '<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>',
+        cards: [
+          {
+            client: 'Yazh K.',
+            suburb: 'Stirling',
+            jobType: 'Patio · quote follow-up',
+            action: 'Hi Yazh, quote sent Mon. Any questions on the Stratco vs Insulslab options?',
+            why: 'Quote 8 days old · client mentioned budget on call (transcript not yet ingested).'
+          },
+          {
+            client: 'Terrence W.',
+            suburb: 'Kardinya',
+            jobType: 'Fencing · expiring quote',
+            action: 'Quote expires Friday. Soft nudge, mention timber-price lock.',
+            why: 'Quote 21 days old · still in pipeline · no inbound replies yet.'
+          },
+          {
+            client: 'Norman S.',
+            suburb: 'Mt Pleasant',
+            jobType: 'Patio · post-call recap',
+            action: 'Recap email: roof option discussed; price summary attached.',
+            why: 'Inbound call 43s · transcript pipeline pending · client asked for written summary.'
+          }
+        ]
+      },
+      {
+        key: 'call',
+        title: 'Call',
+        iconPath: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+        cards: [
+          {
+            client: 'Belinda C.',
+            suburb: 'Floreat',
+            jobType: 'Patio · partner-veto signal',
+            action: 'Call before 4pm; partner home from 4:30.',
+            why: 'Quote 8 days old · she replied "need to talk to husband" 2 days ago.'
+          },
+          {
+            client: 'Aaron L.',
+            suburb: 'Como',
+            jobType: 'Fencing · cold lead',
+            action: 'First-touch call. No SMS replies in 3 days.',
+            why: 'Lead created Tue · zero outbound contact yet · Google Ads source.'
+          }
+        ]
+      }
+    ],
+    calendar: [
+      { day: 'Tue', date: '30', event: 'Belinda C. — scope visit (proposed)', sub: '9:00 · 3 Smith St, Floreat',         status: 'open'   },
+      { day: 'Wed', date: '01', event: 'Khairo team day',                     sub: 'No client visits booked',              status: 'booked' },
+      { day: 'Thu', date: '02', event: 'Roger M. — re-quote walkthrough',     sub: '14:00 · 12 Riverview Tce, Bicton',     status: 'booked' },
+      { day: 'Fri', date: '03', event: '— open —',                            sub: 'Suggest mornings for Yazh K. follow-up', status: 'open' },
+      { day: 'Mon', date: '06', event: 'Norman S. — handover review',         sub: '10:30 · 8 Acacia Way, Mt Pleasant',    status: 'booked' }
+    ],
+    performance: [
+      { label: 'Quoted this wk',   value: '11',    foot: 'Last wk: 9'                        },
+      { label: 'Accepted this wk', value: '4',     foot: '36% of quoted'                     },
+      { label: 'Running comm.',    value: '$3.8k', foot: 'WTD · gross of clawback'           },
+      { label: 'Conv. rate (30d)', value: '32%',   foot: 'Hot suburbs: Floreat, Bicton'      },
+      { label: 'Quote age (avg)',  value: '11 d',  foot: '3 quotes >21 days'                 }
+    ],
+    coaching: {
+      focus: 'Two callers from yesterday want a written recap before deciding. Send before noon, not after.',
+      callList: [
+        { name: 'Belinda C. (Floreat)', why: 'Partner-veto signal. Phone, not SMS. Anchor on installation timeline, not price.' },
+        { name: 'Yazh K. (Stirling)',   why: 'Mentioned budget last call. Lead with the Insulslab option; save Stratco for the ask.' },
+        { name: 'Aaron L. (Como)',      why: 'Cold lead, Google Ads source. Open with "you searched for X — what made you reach out?"' }
+      ],
+      talkTrack: [
+        '<strong>Open:</strong> name, reason for the call, time-bound ("got two minutes?").',
+        '<strong>Listen first:</strong> what changed since the quote? Don’t pitch in the first 60 seconds.',
+        '<strong>Anchor on outcome:</strong> "By spring you’ll be entertaining outside" — sell the use, not the spec.',
+        '<strong>Close with a small step:</strong> book the scope visit, send a recap, or schedule the next call. Never end open-ended.'
+      ]
+    },
+    ads: [
+      { label: 'Cost per lead',     value: '$48'     },
+      { label: 'Cost per quote',    value: '$112'    },
+      { label: 'Cost per accepted', value: '$340'    },
+      { label: 'Source mix',        value: 'GAds 62%' }
+    ]
+  };
+
+  function apEscape(s) {
+    return (s == null ? '' : String(s)).replace(/[&<>"']/g, function(c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  window.apToastPreviewOnly = function() {
+    var msg = 'Preview only — approval lanes are inert until the build gate clears.';
+    if (typeof toast === 'function') {
+      toast(msg, 'info');
+    } else if (typeof window.showToast === 'function') {
+      window.showToast(msg);
+    } else {
+      console.info('[ap-preview]', msg);
+    }
+  };
+
+  function apLaneIcon(pathSvg) {
+    return '<span class="ap-lane-icon" aria-hidden="true">' +
+           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+           pathSvg +
+           '</svg></span>';
+  }
+
+  function apRenderLanes() {
+    var el = document.getElementById('apLanes');
+    if (!el) return;
+    var html = '';
+    APPROVAL_PREVIEW_MOCK.lanes.forEach(function(lane) {
+      html += '<div class="ap-lane" data-lane="' + apEscape(lane.key) + '">';
+      html += '<div class="ap-lane-head">';
+      html += '<span class="ap-lane-name">' + apLaneIcon(lane.iconPath) + apEscape(lane.title) + '</span>';
+      html += '<span class="ap-lane-count">' + lane.cards.length + ' proposed</span>';
+      html += '</div>';
+      lane.cards.forEach(function(card) {
+        html += '<article class="ap-card" data-preview-mock="true">';
+        html += '<div class="ap-card-meta"><strong>' + apEscape(card.client) + '</strong> · ' + apEscape(card.suburb) + ' · ' + apEscape(card.jobType) + '</div>';
+        html += '<div class="ap-card-action">' + apEscape(card.action) + '</div>';
+        html += '<div class="ap-card-why"><strong>Why:</strong> ' + apEscape(card.why) + '</div>';
+        html += '<div class="ap-card-buttons">';
+        html += '<button type="button" class="ap-btn ap-btn-primary" data-preview="true" disabled aria-disabled="true" onclick="apToastPreviewOnly()">Approve</button>';
+        html += '<button type="button" class="ap-btn" data-preview="true" disabled aria-disabled="true" onclick="apToastPreviewOnly()">Edit</button>';
+        html += '<button type="button" class="ap-btn ap-btn-ghost" data-preview="true" disabled aria-disabled="true" onclick="apToastPreviewOnly()">Dismiss</button>';
+        html += '</div>';
+        html += '<span class="ap-pill ap-pill-mock">Mock · awaiting GENERATE bridge</span>';
+        html += '</article>';
+      });
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+
+  function apRenderCalendar() {
+    var el = document.getElementById('apCalList');
+    if (!el) return;
+    var html = '';
+    APPROVAL_PREVIEW_MOCK.calendar.forEach(function(row) {
+      var statusCls = row.status === 'booked' ? 'is-booked' : 'is-open';
+      html += '<div class="ap-cal-row">';
+      html += '<div class="ap-cal-day">' + apEscape(row.day) + '<strong>' + apEscape(row.date) + '</strong></div>';
+      html += '<div><div class="ap-cal-event">' + apEscape(row.event) + '</div><div class="ap-cal-event-sub">' + apEscape(row.sub) + '</div></div>';
+      html += '<span class="ap-cal-status ' + statusCls + '">' + apEscape(row.status) + '</span>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+
+  function apRenderPerformance() {
+    var el = document.getElementById('apStatGrid');
+    if (!el) return;
+    var html = '';
+    APPROVAL_PREVIEW_MOCK.performance.forEach(function(s) {
+      html += '<div class="ap-stat">';
+      html += '<div class="ap-stat-label">' + apEscape(s.label) + '</div>';
+      html += '<div class="ap-stat-value">' + apEscape(s.value) + '</div>';
+      html += '<div class="ap-stat-foot">' + apEscape(s.foot) + '</div>';
+      html += '<span class="ap-pill ap-pill-needs">Needs evidence · Cap 0</span>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+
+  function apRenderCoaching() {
+    var el = document.getElementById('apCoachContainer');
+    if (!el) return;
+    var c = APPROVAL_PREVIEW_MOCK.coaching;
+    var html = '';
+    html += '<div class="ap-coach-focus">';
+    html += '<div class="ap-coach-focus-eyebrow">Focus</div>';
+    html += '<div class="ap-coach-focus-line">' + apEscape(c.focus) + '</div>';
+    html += '</div>';
+    html += '<div class="ap-section-eyebrow" style="margin-top:18px;">Who to call · why</div>';
+    html += '<div class="ap-coach-list">';
+    c.callList.forEach(function(row) {
+      html += '<div class="ap-coach-row">';
+      html += '<div class="ap-coach-row-name">' + apEscape(row.name) + '</div>';
+      html += '<div class="ap-coach-row-why">' + apEscape(row.why) + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '<details class="ap-talk-track"><summary>Suggested talk track</summary><div class="ap-talk-track-body">';
+    c.talkTrack.forEach(function(line) { html += '<p>' + line + '</p>'; });
+    html += '</div></details>';
+    el.innerHTML = html;
+  }
+
+  function apRenderAds() {
+    var el = document.getElementById('apAdsGrid');
+    if (!el) return;
+    var html = '';
+    APPROVAL_PREVIEW_MOCK.ads.forEach(function(cell) {
+      html += '<div class="ap-ads-cell">';
+      html += '<div class="ap-ads-label">' + apEscape(cell.label) + '</div>';
+      html += '<div class="ap-ads-value">' + apEscape(cell.value) + '</div>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+
+  window.apLoad = function() {
+    var rep = APPROVAL_PREVIEW_MOCK.rep;
+    var repEl = document.getElementById('apHeaderRep');
+    var subEl = document.getElementById('apHeaderSub');
+    if (repEl) repEl.textContent = rep.name;
+    if (subEl) subEl.textContent = rep.sub;
+    apRenderLanes();
+    apRenderCalendar();
+    apRenderPerformance();
+    apRenderCoaching();
+    apRenderAds();
   };
 
 })();
