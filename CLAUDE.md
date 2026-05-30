@@ -103,6 +103,6 @@ Deployed via GitHub Pages — pushes go live immediately.
 ## Owner
 
 **Marnin Stobbe** — SecureWorks WA founder
-- GitHub: marninms98-dotcom
+- GitHub: SecureWorks-GROUP
 
 <!-- branch-protection mergeability probe — will be reverted/no-op -->
