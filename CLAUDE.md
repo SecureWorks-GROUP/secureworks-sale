@@ -104,3 +104,5 @@ Deployed via GitHub Pages — pushes go live immediately.
 
 **Marnin Stobbe** — SecureWorks WA founder
 - GitHub: marninms98-dotcom
+
+<!-- branch-protection mergeability probe — will be reverted/no-op -->
