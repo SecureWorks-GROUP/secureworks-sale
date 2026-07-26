@@ -292,6 +292,8 @@
     .stat-icon.blue svg { stroke: var(--sw-blue); }
     .stat-icon.amber { background: rgba(230,126,34,0.1); }
     .stat-icon.amber svg { stroke: var(--sw-yellow); }
+    .stat-icon.red { background: rgba(231,76,60,0.1); }
+    .stat-icon.red svg { stroke: var(--sw-red); }
     .stat-body { flex: 1; min-width: 0; }
     .stat-label {
       font-size: 11px;
@@ -4708,7 +4710,7 @@
 
     // ── Stats ──
     var openFollowups = tier0.length + tier1.length;
-    var inPlay = rows.filter(function(r) { return r.tier >= 0 && r.tier <= 3; });
+    var inPlay = rows.filter(function(r) { return r.tier != null && r.tier >= 0 && r.tier <= 3; });
     var dollarsInPlay = inPlay.reduce(function(s, r) { return s + fuNum(r.quoted_value); }, 0);
     var overdue = inPlay.filter(function(r) { return fuNum(r.days_silent) > 14; }).length;
 
