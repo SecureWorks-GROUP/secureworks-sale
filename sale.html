@@ -1703,6 +1703,127 @@
     .ck-modal textarea { min-height: 80px; resize: vertical; }
     .ck-modal .ck-modal-actions { display:flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
 
+    /* ══════════════════════════════════════════════════
+       FOLLOW-UP COCKPIT (fencing) — read-only worklist
+       ══════════════════════════════════════════════════ */
+    .fu-note {
+      background: rgba(52,152,219,0.08);
+      border-left: 3px solid var(--sw-blue);
+      color: var(--sw-mid);
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+    .fu-note strong { color: var(--sw-dark); }
+    .fu-panel {
+      background: var(--sw-card);
+      border-radius: var(--sw-radius);
+      box-shadow: var(--sw-shadow);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .fu-chase-row {
+      display: flex;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px solid var(--sw-border);
+    }
+    .fu-chase-row:first-child { border-top: none; }
+    .fu-rank {
+      width: 26px; height: 26px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--sw-light);
+      color: var(--sw-mid);
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--sw-font-num);
+    }
+    .fu-chase-main { flex: 1; min-width: 0; }
+    .fu-chase-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 10px; flex-wrap: wrap;
+    }
+    .fu-name { font-weight: 700; color: var(--sw-dark); font-size: 15px; }
+    .fu-value { font-weight: 700; color: var(--sw-dark); font-family: var(--sw-font-num); white-space: nowrap; }
+    .fu-meta { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; align-items: center; }
+    .fu-pill {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.4px; padding: 2px 8px; border-radius: 10px;
+    }
+    .fu-pill.tier0 { background: rgba(231,76,60,0.12); color: var(--sw-red); }
+    .fu-pill.tier1 { background: rgba(230,126,34,0.12); color: var(--sw-yellow); }
+    .fu-pill.ball { background: rgba(241,90,41,0.12); color: var(--sw-orange); }
+    .fu-pill.reject { background: rgba(231,76,60,0.10); color: var(--sw-red); }
+    .fu-pill.muted { background: var(--sw-light); color: var(--sw-text-sec); }
+    .fu-silent { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+    .fu-msg {
+      background: var(--sw-bg);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: var(--sw-text);
+      line-height: 1.4;
+      margin-top: 6px;
+    }
+    .fu-msg .fu-msg-date { display: block; font-size: 10px; color: var(--sw-text-sec); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+    .fu-msg.empty { color: var(--sw-text-sec); font-style: italic; background: transparent; padding: 6px 0; }
+    /* Pipeline groups */
+    .fu-pipe-group { margin-bottom: 10px; }
+    .fu-pipe-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px;
+      background: var(--sw-light);
+      border-radius: 8px;
+      cursor: pointer;
+      gap: 10px;
+    }
+    .fu-pipe-head:hover { background: var(--sw-border); }
+    .fu-pipe-title { font-weight: 700; color: var(--sw-dark); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+    .fu-pipe-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .fu-pipe-totals { font-size: 12px; color: var(--sw-mid); font-weight: 600; font-family: var(--sw-font-num); white-space: nowrap; }
+    .fu-pipe-rows { padding: 4px 4px 4px 22px; display: none; }
+    .fu-pipe-rows.open { display: block; }
+    .fu-pipe-row {
+      display: flex; justify-content: space-between; gap: 10px;
+      padding: 7px 6px; font-size: 13px; border-bottom: 1px solid var(--sw-border);
+    }
+    .fu-pipe-row:last-child { border-bottom: none; }
+    .fu-pipe-row .nm { color: var(--sw-text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .fu-pipe-row .vl { color: var(--sw-mid); font-family: var(--sw-font-num); font-weight: 600; white-space: nowrap; }
+    /* To-dos */
+    .fu-todo-add { display: flex; gap: 8px; margin-bottom: 12px; }
+    .fu-todo-add input {
+      flex: 1; padding: 10px 12px; border: 1px solid var(--sw-border);
+      border-radius: 8px; font-size: 14px; font-family: var(--sw-font);
+    }
+    .fu-todo-add input:focus { outline: none; border-color: var(--sw-orange); }
+    .fu-todo {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 4px; border-top: 1px solid var(--sw-border);
+    }
+    .fu-todo:first-child { border-top: none; }
+    .fu-todo-check {
+      width: 20px; height: 20px; flex-shrink: 0; cursor: pointer;
+      border: 2px solid var(--sw-border); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff; transition: all 0.15s;
+    }
+    .fu-todo-check.done { background: var(--sw-green); border-color: var(--sw-green); }
+    .fu-todo-check svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 3; fill: none; display: none; }
+    .fu-todo-check.done svg { display: block; }
+    .fu-todo-text { flex: 1; font-size: 14px; color: var(--sw-text); word-break: break-word; }
+    .fu-todo.completed .fu-todo-text { text-decoration: line-through; color: var(--sw-text-sec); }
+    .fu-todo-del {
+      background: none; border: none; cursor: pointer; color: var(--sw-text-sec);
+      font-size: 18px; line-height: 1; padding: 4px 6px; flex-shrink: 0; border-radius: 6px;
+    }
+    .fu-todo-del:hover { color: var(--sw-red); background: rgba(231,76,60,0.08); }
+    .fu-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 900px) {
+      .fu-grid { grid-template-columns: 1.6fr 1fr; align-items: start; }
+    }
   </style>
 </head>
 <body>
@@ -1721,6 +1842,7 @@
     <div class="header-nav">
       <button data-view="cockpit" onclick="showView('cockpit')">Cockpit</button>
       <button data-view="action" onclick="showView('action')" class="active">Action</button>
+      <button data-view="followup" onclick="showView('followup')">Follow-up</button>
       <button data-view="pipeline" onclick="showView('pipeline')">Pipeline</button>
       <button data-view="performance" onclick="showView('performance')">Stats</button>
       <button data-view="leads" onclick="showView('leads')">Leads</button>
@@ -1741,6 +1863,10 @@
   <button data-view="action" onclick="showView('action')" class="active">
     <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Action
+  </button>
+  <button data-view="followup" onclick="showView('followup')">
+    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Chase
   </button>
   <button data-view="pipeline" onclick="showView('pipeline')">
     <svg viewBox="0 0 24 24"><rect x="3" y="3" width="5" height="18" rx="1" fill="currentColor"/><rect x="10" y="8" width="5" height="13" rx="1" fill="currentColor"/><rect x="17" y="5" width="5" height="16" rx="1" fill="currentColor"/></svg>
@@ -1849,6 +1975,19 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     FOLLOW-UP COCKPIT VIEW (fencing) — read-only worklist
+     Reads v_sales_priority via the authenticated Supabase
+     session (cloud.supabase). No writes, no sending.
+     ══════════════════════════════════════════════════ -->
+<div id="viewFollowup" class="view">
+  <div class="container-wide">
+    <div id="followupContent">
+      <div class="loading-state"><div class="spinner"></div>Loading your fencing follow-ups...</div>
     </div>
   </div>
 </div>
@@ -2287,6 +2426,7 @@
     localStorage.setItem('sw_sale_tab', view);
 
     if (view === 'cockpit') ckLoad();
+    if (view === 'followup') loadFollowup();
     if (view === 'action') loadAction();
     if (view === 'pipeline') loadPipeline();
     if (view === 'performance') loadPerformance();
@@ -4462,6 +4602,329 @@
     }).then(function(r) { return r.json(); })
       .then(function() { if (window.showToast) showToast('Snoozed 3 days'); ckLoad(); })
       .catch(function(err) { alert('Snooze failed: ' + friendlyError(err)); });
+  };
+
+  // ══════════════════════════════════════════════════
+  // FOLLOW-UP COCKPIT (fencing) — read-only worklist
+  //
+  // Data path: reads the Supabase view `v_sales_priority`
+  // through the app's authenticated Supabase session
+  // (cloud.supabase), which runs under the logged-in user's
+  // RLS. It deliberately does NOT use the shared x-api-key /
+  // ghl-proxy / reporting-api path for cockpit data.
+  //
+  // Read-only: no inserts/updates/deletes to any table, and
+  // no send actions. The only persistence is the personal
+  // to-do checklist, which lives solely in localStorage.
+  // ══════════════════════════════════════════════════
+
+  // Tier presentation (dot colour + fallback label). The row's
+  // own tier_label wins; this is only a colour/label fallback.
+  var FU_TIERS = [
+    { t: 0, label: 'Ball in our court',  dot: 'var(--sw-red)' },
+    { t: 1, label: 'Money on the table', dot: 'var(--sw-yellow)' },
+    { t: 2, label: 'Hot window',         dot: 'var(--sw-orange)' },
+    { t: 3, label: 'Last chance',        dot: 'var(--sw-blue)' },
+    { t: 4, label: 'Long tail',          dot: 'var(--sw-mid)' },
+    { t: 5, label: 'Cold',               dot: 'var(--sw-text-sec)' },
+    { t: 6, label: 'In flight',          dot: 'var(--sw-green)' },
+    { t: 7, label: 'Said no',            dot: '#95a5a6' }
+  ];
+  var _fuPipeOpen = { 0: true, 1: true }; // remembers which stages are expanded
+
+  function fuNum(v) { return (v === null || v === undefined) ? 0 : (Number(v) || 0); }
+  function fuNotRecent(r) { return !r.recently_contacted; }
+
+  function fuTierMeta(t) {
+    for (var i = 0; i < FU_TIERS.length; i++) { if (FU_TIERS[i].t === t) return FU_TIERS[i]; }
+    return { t: t, label: 'Tier ' + t, dot: 'var(--sw-text-sec)' };
+  }
+
+  function fuFmtDate(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+  }
+
+  function fuErrorHtml(title, detail) {
+    return '<div class="error-state"><p style="font-weight:700;color:var(--sw-red)">' + escHtml(title) + '</p>' +
+      '<p style="font-size:12px;margin-top:6px;color:var(--sw-text-sec)">' + escHtml(detail) + '</p>' +
+      '<button class="btn btn-primary btn-small" style="width:auto" onclick="loadFollowup()">Retry</button></div>';
+  }
+
+  // ── To-dos (localStorage only, per-user) ──
+  function fuTodoKey() {
+    var uid = (_user && _user.id) ? _user.id : 'anon';
+    return 'sw_followup_todos_' + uid;
+  }
+  function fuGetTodos() {
+    try { var raw = localStorage.getItem(fuTodoKey()); return raw ? (JSON.parse(raw) || []) : []; }
+    catch (e) { return []; }
+  }
+  function fuSaveTodos(todos) {
+    try { localStorage.setItem(fuTodoKey(), JSON.stringify(todos)); } catch (e) {}
+  }
+
+  window.loadFollowup = function() {
+    var el = document.getElementById('followupContent');
+    if (!el) return;
+
+    // Guard: the authenticated Supabase client must exist. No fallback path.
+    if (!cloud || !cloud.supabase) {
+      el.innerHTML = fuErrorHtml('Not signed in', 'The follow-up cockpit needs an authenticated session. Please sign in again.');
+      return;
+    }
+
+    el.innerHTML = '<div class="loading-state"><div class="spinner"></div>Loading your fencing follow-ups...</div>';
+
+    // SAFE PATH ONLY — authenticated session + RLS. Never the shared x-api-key path.
+    // Filter: fencing + one row per person (is_primary_for_contact). No SWF- prefix filter.
+    cloud.supabase
+      .from('v_sales_priority')
+      .select('job_id, job_number, client_name, quoted_value, status, tier, tier_label, days_silent, last_inbound_at, last_inbound_body, last_reply_type, ball_in_court, recently_contacted, job_type, is_primary_for_contact')
+      .eq('job_type', 'fencing')
+      .eq('is_primary_for_contact', true)
+      .then(function(res) {
+        if (res && res.error) {
+          // Deliberately do NOT fall back to any shared-key path — surface the failure.
+          el.innerHTML = fuErrorHtml('Could not load the worklist',
+            friendlyError(res.error) + ' — this cockpit reads only your authenticated session and will not fall back to a shared key.');
+          return;
+        }
+        fuRender((res && res.data) || []);
+      })
+      .catch(function(err) {
+        el.innerHTML = fuErrorHtml('Could not load the worklist', friendlyError(err));
+      });
+  };
+
+  function fuRender(rows) {
+    var el = document.getElementById('followupContent');
+    if (!el) return;
+
+    var tier0 = rows.filter(function(r) { return r.tier === 0; });
+    var tier1 = rows.filter(function(r) { return r.tier === 1; });
+
+    // ── Stats ──
+    var openFollowups = tier0.length + tier1.length;
+    var inPlay = rows.filter(function(r) { return r.tier >= 0 && r.tier <= 3; });
+    var dollarsInPlay = inPlay.reduce(function(s, r) { return s + fuNum(r.quoted_value); }, 0);
+    var overdue = inPlay.filter(function(r) { return fuNum(r.days_silent) > 14; }).length;
+
+    // ── Chase list: tier 0 then tier 1, drop recently-contacted (respect the
+    //    view's 48h suppression), highest quoted_value first within each tier. ──
+    function byValueDesc(a, b) { return fuNum(b.quoted_value) - fuNum(a.quoted_value); }
+    var chase = tier0.filter(fuNotRecent).sort(byValueDesc)
+      .concat(tier1.filter(fuNotRecent).sort(byValueDesc));
+
+    var html = '';
+
+    // Read-only banner
+    html += '<div class="fu-note">Read-only view of live fencing data via your signed-in session. ' +
+      'Nothing here sends messages or changes the database.</div>';
+
+    // Stats strip
+    html += '<div class="stat-grid">';
+    html += fuStatCard('orange', 'Open follow-ups', String(openFollowups), 'tier 0 + tier 1',
+      '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>');
+    html += fuStatCard('red', 'Overdue', String(overdue), 'silent 14+ days',
+      '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>');
+    html += fuStatCard('blue', '$ in play', fmtCurrency(dollarsInPlay), 'tiers 0–3 quoted value',
+      '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>');
+    html += '</div>';
+
+    // "Won this week" is intentionally omitted — see note.
+    html += '<div class="fu-note"><strong>Won this week</strong> is not shown: the worklist has no clean ' +
+      'won/deposit date, and job statuses are known to lag reality, so any figure would mislead.</div>';
+
+    // Two-column body
+    html += '<div class="fu-grid">';
+
+    // Left column: chase list + pipeline
+    html += '<div>';
+    html += '<div class="fu-panel">';
+    html += '<div class="section-heading" style="margin-top:0">Who to chase next ' +
+      '<span class="badge">' + chase.length + '</span></div>';
+    html += fuRenderChase(chase);
+    html += '</div>';
+
+    html += '<div class="fu-panel">';
+    html += '<div class="section-heading" style="margin-top:0">Quote / deal status ' +
+      '<span class="badge">' + rows.length + ' jobs</span></div>';
+    html += fuRenderPipeline(rows);
+    html += '</div>';
+    html += '</div>';
+
+    // Right column: to-dos
+    html += '<div>';
+    html += '<div class="fu-panel">';
+    html += '<div class="section-heading" style="margin-top:0">My to-dos ' +
+      '<span class="badge">personal</span></div>';
+    html += '<div class="fu-todo-add">' +
+      '<input type="text" id="fuTodoInput" placeholder="Add a to-do..." maxlength="200" ' +
+      'onkeydown="fuTodoKeydown(event)">' +
+      '<button class="btn btn-primary btn-small" onclick="fuAddTodo()">Add</button>' +
+      '</div>';
+    html += '<div id="fuTodoList"></div>';
+    html += '<div style="font-size:11px;color:var(--sw-text-sec);margin-top:10px;line-height:1.5">' +
+      'Saved on this device only — private to you, not in the sales database.</div>';
+    html += '</div>';
+    html += '</div>';
+
+    html += '</div>'; // fu-grid
+
+    el.innerHTML = html;
+    fuRenderTodos();
+  }
+
+  function fuStatCard(colour, label, value, sub, iconPaths) {
+    return '<div class="stat-card border-' + colour + '">' +
+      '<div class="stat-icon ' + colour + '"><svg viewBox="0 0 24 24">' + iconPaths + '</svg></div>' +
+      '<div class="stat-body">' +
+      '<div class="stat-label">' + escHtml(label) + '</div>' +
+      '<div class="stat-value">' + escHtml(value) + '</div>' +
+      '<div class="stat-sub">' + escHtml(sub) + '</div>' +
+      '</div></div>';
+  }
+
+  function fuRenderChase(chase) {
+    if (!chase.length) {
+      return '<div class="empty-state" style="padding:28px 12px">You’re all caught up — no one waiting on a reply right now.</div>';
+    }
+    var out = '';
+    chase.forEach(function(r, i) {
+      var days = fuNum(r.days_silent);
+      var tierClass = (r.tier === 0) ? 'tier0' : 'tier1';
+      var tierLabel = r.tier_label || fuTierMeta(r.tier).label;
+
+      var pills = '<span class="fu-pill ' + tierClass + '">' + escHtml(String(tierLabel).replace(/_/g, ' ')) + '</span>';
+      if (r.ball_in_court) {
+        var b = String(r.ball_in_court).toLowerCase();
+        var btxt = (b === 'us') ? 'Ball in your court' : 'Ball: ' + r.ball_in_court;
+        pills += '<span class="fu-pill ball">' + escHtml(btxt) + '</span>';
+      }
+      // Flag a possible rejection, but never drop the row on it (classifier is imperfect).
+      if (r.last_reply_type === 'rejection') {
+        pills += '<span class="fu-pill reject">Maybe a no?</span>';
+      }
+      pills += '<span class="fu-silent ' + daysClass(days) + '">' + (days === 1 ? '1 day' : days + ' days') + ' silent</span>';
+
+      var msg;
+      if (r.last_inbound_body) {
+        var dt = fuFmtDate(r.last_inbound_at);
+        msg = '<div class="fu-msg">“' + escHtml(r.last_inbound_body) + '”' +
+          (dt ? '<span class="fu-msg-date">Their last message · ' + escHtml(dt) + '</span>' : '') + '</div>';
+      } else {
+        msg = '<div class="fu-msg empty">No message on file for this contact.</div>';
+      }
+
+      var jobNo = r.job_number ? '<span class="fu-pill muted">' + escHtml(r.job_number) + '</span>' : '';
+
+      out += '<div class="fu-chase-row">' +
+        '<div class="fu-rank">' + (i + 1) + '</div>' +
+        '<div class="fu-chase-main">' +
+        '<div class="fu-chase-head"><span class="fu-name">' + escHtml(r.client_name || 'Unknown') + '</span>' +
+        '<span class="fu-value">' + fmtCurrency(fuNum(r.quoted_value)) + '</span></div>' +
+        '<div class="fu-meta">' + pills + ' ' + jobNo + '</div>' +
+        msg +
+        '</div></div>';
+    });
+    return out;
+  }
+
+  function fuRenderPipeline(rows) {
+    if (!rows.length) {
+      return '<div class="empty-state" style="padding:28px 12px">No fencing jobs visible yet.</div>';
+    }
+    // Group by tier
+    var groups = {};
+    rows.forEach(function(r) {
+      var t = (r.tier === null || r.tier === undefined) ? -1 : r.tier;
+      if (!groups[t]) groups[t] = [];
+      groups[t].push(r);
+    });
+    var tiers = Object.keys(groups).map(Number).sort(function(a, b) { return a - b; });
+
+    var out = '';
+    tiers.forEach(function(t) {
+      var meta = fuTierMeta(t);
+      var list = groups[t].slice().sort(function(a, b) { return fuNum(b.quoted_value) - fuNum(a.quoted_value); });
+      var total = list.reduce(function(s, r) { return s + fuNum(r.quoted_value); }, 0);
+      var label = (list[0] && list[0].tier_label) ? String(list[0].tier_label).replace(/_/g, ' ') : meta.label;
+      var open = !!_fuPipeOpen[t];
+
+      out += '<div class="fu-pipe-group">';
+      out += '<div class="fu-pipe-head" onclick="fuTogglePipe(' + t + ')">' +
+        '<span class="fu-pipe-title"><span class="fu-pipe-dot" style="background:' + meta.dot + '"></span>' +
+        escHtml(label) + '</span>' +
+        '<span class="fu-pipe-totals">' + list.length + ' · ' + fmtCurrency(total) + '</span></div>';
+      out += '<div class="fu-pipe-rows' + (open ? ' open' : '') + '" id="fuPipeRows-' + t + '">';
+      list.forEach(function(r) {
+        out += '<div class="fu-pipe-row">' +
+          '<span class="nm">' + escHtml(r.client_name || 'Unknown') +
+          (r.job_number ? ' <span style="color:var(--sw-text-sec);font-size:11px">' + escHtml(r.job_number) + '</span>' : '') +
+          '</span>' +
+          '<span class="vl">' + fmtCurrency(fuNum(r.quoted_value)) + '</span></div>';
+      });
+      out += '</div></div>';
+    });
+    return out;
+  }
+
+  window.fuTogglePipe = function(t) {
+    _fuPipeOpen[t] = !_fuPipeOpen[t];
+    var el = document.getElementById('fuPipeRows-' + t);
+    if (el) el.classList.toggle('open', !!_fuPipeOpen[t]);
+  };
+
+  function fuRenderTodos() {
+    var list = document.getElementById('fuTodoList');
+    if (!list) return;
+    var todos = fuGetTodos();
+    if (!todos.length) {
+      list.innerHTML = '<div class="empty-state" style="padding:22px 12px;font-size:13px">No to-dos yet. Add one above.</div>';
+      return;
+    }
+    var out = '';
+    todos.forEach(function(td) {
+      out += '<div class="fu-todo' + (td.done ? ' completed' : '') + '">' +
+        '<div class="fu-todo-check' + (td.done ? ' done' : '') + '" onclick="fuToggleTodo(\'' + td.id + '\')" role="checkbox" aria-checked="' + (td.done ? 'true' : 'false') + '" tabindex="0">' +
+        '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>' +
+        '<div class="fu-todo-text">' + escHtml(td.text) + '</div>' +
+        '<button class="fu-todo-del" onclick="fuDeleteTodo(\'' + td.id + '\')" aria-label="Delete to-do">&times;</button>' +
+        '</div>';
+    });
+    list.innerHTML = out;
+  }
+
+  window.fuAddTodo = function() {
+    var input = document.getElementById('fuTodoInput');
+    if (!input) return;
+    var text = input.value.trim();
+    if (!text) return;
+    var todos = fuGetTodos();
+    todos.unshift({ id: 't' + Date.now() + Math.floor(Math.random() * 1000), text: text, done: false });
+    fuSaveTodos(todos);
+    input.value = '';
+    fuRenderTodos();
+  };
+
+  window.fuTodoKeydown = function(e) {
+    if (e && e.key === 'Enter') { e.preventDefault(); fuAddTodo(); }
+  };
+
+  window.fuToggleTodo = function(id) {
+    var todos = fuGetTodos();
+    todos.forEach(function(td) { if (td.id === id) td.done = !td.done; });
+    fuSaveTodos(todos);
+    fuRenderTodos();
+  };
+
+  window.fuDeleteTodo = function(id) {
+    var todos = fuGetTodos().filter(function(td) { return td.id !== id; });
+    fuSaveTodos(todos);
+    fuRenderTodos();
   };
 
 })();
