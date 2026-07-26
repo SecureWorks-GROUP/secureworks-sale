@@ -42,7 +42,7 @@ secureworks-sale/
 ├── shared/
 │   ├── cloud.js           ← Copied from patio-tool canonical
 │   └── brand.js           ← Copied from secureworks-site
-├── CLAUDE.md              ← This file
+├── AGENTS.md              ← This file (CLAUDE.md is a symlink to it)
 ```
 
 Everything is in `sale.html`. Do NOT split into multiple files.
