@@ -1,0 +1,15 @@
+# Replaces .github/workflows/pr-check.yml on GitLab. Checks run only on merge requests into main.
+sanity-check:
+  image: node:22
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
+  variables: { GIT_DEPTH: "0" }
+  script:
+    - apt-get update -qq && apt-get install -y -qq tidy >/dev/null
+    - BASE="$CI_MERGE_REQUEST_DIFF_BASE_SHA"
+    - |
+      for f in $(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- '*.html'); do
+        rc=0; tidy -q --show-warnings no "$f" >/dev/null 2>&1 || rc=$?
+        [ "$rc" -lt 2 ] || { echo "$f has HTML syntax errors"; exit 1; }
+      done
+    - for f in $(git diff --name-only --diff-filter=ACM "$BASE" HEAD -- '*.js'); do node --check "$f"; done
