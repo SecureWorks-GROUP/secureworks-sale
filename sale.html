@@ -4318,8 +4318,18 @@
 
     var weekEarned = (commWeek && commWeek.earned_total) || 0;
     var weekJobs = (commWeek && commWeek.jobs_count) || 0;
-    document.getElementById('ckHeroWeek').textContent = ckFmtMoney(weekEarned);
-    document.getElementById('ckHeroWeekJobs').textContent = weekJobs + (weekJobs === 1 ? ' job' : ' jobs') + ' this week';
+    var weekMissing = ckCommMissing(commWeek);
+    document.getElementById('ckHeroWeek').textContent = ckFmtMoney(weekEarned) + (weekMissing ? '+' : '');
+    document.getElementById('ckHeroWeekJobs').textContent = weekJobs + (weekJobs === 1 ? ' job' : ' jobs') + ' this week' +
+      (weekMissing ? ' · ' + weekMissing + ' with no saved commission' : '');
+  }
+
+  // Jobs in a commission period whose accepted quote saved no commission. The
+  // server leaves them out of earned_total rather than guess, so the total is
+  // a floor while this is above 0. Older answers carry no count: 0.
+  function ckCommMissing(data) {
+    if (!data || data.commission_complete !== false) return 0;
+    return Number(data.commission_unknown_count) || 0;
   }
 
   function ckCardActions(c) {
@@ -4392,12 +4402,29 @@
     var monthEarned = (monthData && monthData.earned_total) || 0;
     var weekEarned  = (weekData && weekData.earned_total) || 0;
     var ytdEarned   = (ytdData && ytdData.earned_total) || 0;
-    document.getElementById('ckCommMonth').textContent = ckFmtMoney(monthEarned);
-    document.getElementById('ckCommWeek').textContent  = ckFmtMoney(weekEarned);
-    document.getElementById('ckCommYtd').textContent   = ckFmtMoney(ytdEarned);
+    var monthMissing = ckCommMissing(monthData);
+    var weekMissing  = ckCommMissing(weekData);
+    var ytdMissing   = ckCommMissing(ytdData);
+    document.getElementById('ckCommMonth').textContent = ckFmtMoney(monthEarned) + (monthMissing ? '+' : '');
+    document.getElementById('ckCommWeek').textContent  = ckFmtMoney(weekEarned) + (weekMissing ? '+' : '');
+    document.getElementById('ckCommYtd').textContent   = ckFmtMoney(ytdEarned) + (ytdMissing ? '+' : '');
 
     var f = monthData && monthData.formula_snapshot;
-    if (f) {
+    if (f && f.basis) {
+      var lines = [
+        'Commission · as saved on each accepted quote (the scoper\'s percentage of that quote\'s gross profit)',
+        'Earned trigger · deposit paid'
+      ];
+      var gaps = [];
+      if (monthMissing) gaps.push(monthMissing + ' this month');
+      if (weekMissing) gaps.push(weekMissing + ' this week');
+      if (ytdMissing) gaps.push(ytdMissing + ' this year');
+      if (gaps.length) {
+        lines.push('<span style="color:var(--sw-orange)"><b>Partial total.</b> Jobs with no commission saved on the accepted quote are not counted (' +
+          ckEscape(gaps.join(' · ')) + '). A + after an amount means it is at least that.</span>');
+      }
+      document.getElementById('ckCommFormula').innerHTML = lines.join('<br>');
+    } else if (f) {
       var rate = Math.round((f.rep_rate || 0) * 1000) / 10;
       var fenc = Math.round((f.fencing_baseline_gp || 0) * 1000) / 10;
       var patio = Math.round((f.patio_baseline_gp || 0) * 1000) / 10;
